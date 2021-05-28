@@ -1,0 +1,88 @@
+\chapter{Requirements}
+\label{chap:requirements}
+
+This chapter deals with defining and analysing of requirements for the project. To help determining the requirements, a list of use cases is created. The requirements are split into two categories: functional requirements and non-functional requirements. Using the two tools, MoSCoW  and FURPS , the requirements are then evaluated and prioritized.
+
+\section{Use case}
+Before determining the requirements, a list of use cases  is created to better understand what is essential for the user experience. This list can be seen in table \ref{tab:usecases} below.
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{|l|l|X|X|}
+\hline
+\rowcolor[HTML]{9B9B9B}
+ID   & Use case name      & Pre-Condition                                               & Post-Condition                                                    \\ \hline
+\#01 & Add node           & Add node tool is selected                                   & After a successful creation, a node is added to the visualisation \\ \hline
+\#02 & Draw arrow         & Draw line tool is selected, two nodes in visualisation      & A line is drawn between two nodes                                 \\\hline
+\#03 & Delete nodes       & Nodes are selected                                          & The nodes are deleted from the visualisation                      \\\hline
+\#04 & Delete arrows      & Arrows are selected                                         & The arrows are deleted from the visualisation                     \\\hline
+\#05 & Write queries      & Text field is selected                                      & The text field is updated                                         \\\hline
+\#06 & Save visualisation & Visualisation is not empty                                  & The visualisation has been saved locally                          \\\hline
+\#07 & Edit node          & The edit tool is selected, a node is in the visualisation   & The node has been altered                                         \\\hline
+\#08 & Edit arrow         & The edit tool is selected, an arrow is in the visualisation & The arrow has been altered    \\\hline   
+\end{tabularx}
+\label{tab:usecases}
+\caption{Use cases for the program}
+\end{table}
+
+Each use case from table \ref{tab:usecases} is then expanded to include the possible scenarios in a separate table. An example of this is in \ref{tab:drawarrowusecase} which shows the extended version of the “Draw arrow” use case. By expanding the use case like this, the technical aspects of the use case can be described which can help in requirement elicitation and development.
+
+\begin{table}[h]
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\rowcolor[HTML]{9B9B9B}
+Main Scenarios & Serial no. & Steps                                                                                          \\ \hline
+Actors/Users   & \#01       & Click on two nodes                                                                             \\ \hline
+               & \#02       & A popup occurs for arrow creation                                                              \\ \hline
+               & \#03a      & Input name and press submit                                                                    \\ \hline
+               & \#04a      & \begin{tabular}{@{}l@{}}An arrow is created\\ Close popup\end{tabular}                \\ \hline
+               & \#03b      & Close popup                                                                                    \\ \hline
+Extensions     & \#01       & \begin{tabular}{@{}l@{}}Nodes are already connected\\     Show error message\end{tabular} \\ \hline
+               & \#03a      & \begin{tabular}{@{}l@{}}Name is not eligible\\    Show error message\end{tabular} \\ \hline                   
+\end{tabularx}
+\label{tab:drawarrowusecase}
+\caption{Expanded use case for "\#02 Draw arrow"}
+\end{table}
+
+\section{Functional requirements}
+Using the list of use cases, a set of functional requirements can be determined. The functional requirements are then prioritized using the MoSCoW method. This method deals with four different types of requirement prioritization: Must have, should have, could have, and will not have. The functional requirements can be seen in table \ref{tab:funcrequirements}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor[HTML]{9B9B9B}
+ID  & Title                       & MoSCoW \\ \hline
+\#01 & Node creation               & M      \\ \hline
+\#02 & Arrow creation              & M      \\ \hline
+\#03 & Writeable query             & M      \\ \hline
+\#04 & Example of query            & C      \\ \hline
+\#05 & Editable nodes              & S      \\ \hline
+\#06 & Editable arrow              & S      \\ \hline
+\#07 & Query and node highlighting & S      \\ \hline
+\#08 & Visual and textual updating & M      \\ \hline
+\#09 & Textual input parsing       & M      \\ \hline
+\#10 & Parsing error handling      & S      \\ \hline
+\#11 & Saving locally              & S      \\ \hline
+\#12 & Uploading saves             & C      \\ \hline
+\#13 & Multiple query types        & S      \\ \hline
+\end{tabular}
+\label{tab:funcrequirements}
+\caption{Functional requirements}
+\end{table}
+
+Must have requirements are critical functionality. This means that without these, the program would be non-functional, or it would be impossible to implement other functionalities. An example of this is the node creation requirement. Without this functionality, there is not really a lot of program left. It would be impossible to work together with the textual view, saving the visualisation, add arrows, etc. Must have requirements are therefore often also reflected by the most important use cases.
+
+\section{Non-functional requirements}
+The non-functional requirements do not necessarily reflect the use cases but are requirements that influence the experience of the system. In this section, non-functional requirements are set through the process of a FURPS analysis. FURPS stands for: Functionality, Usability, Reliability, Performance, and Supportability. Functionality will be disregarded as this belongs to the functional requirements.
+
+\subsection{Usability}
+The target user for the application has no experience with RDF and SPARQL. This implies the application should focus on beginner level SPARQL and ease the user into writing queries. The application should be easy to figure out in the first couple of minutes. To help understand the concepts within SPARQL, the use of highlighting could be implemented into the system. This means that different attributes of the query could be highlighted consistently across the application making it easier to connect the visualisation to the written query. The user interface does not need to be visually pleasing, as the functionality is prime, but it should be consistent and therefore intuitive to use.
+
+\subsection{Reliability}
+The software needs to be working without any critical failures in the code. The application shall not store any user data, but it could be useful to cache the visualisation on updates, to help recoverability in case of shut-down failure. The application will not focus on loading times for different devices.
+
+\subsection{Performance}
+Once loaded, the application should run smoothly, preferably even on low end computers. There should not be any noticeable delay between actions. Actions should be done within 100 milliseconds of a user input, and if not, some sort of indication that the action is being processed should be shown.
+
+\subsection{Supportability}
+The application must be maintainable and open to future alterations. The application shall work as a web component and should therefore be easy to add to a webpage. The application will not be expected to support other devices than PC’s.
