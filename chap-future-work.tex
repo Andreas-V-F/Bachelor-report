@@ -1,0 +1,42 @@
+\chapter{Future work}
+\label{chap:future-work}
+
+\section{Short term goals}
+The most important task for a future improvement would be the implementation of more SPARQL functionality as the second iteration did not add much in this area. The most important functionality to add within the short term would be the UNION and FILTER functions as these work across any query type possible. The last of the requirements that has something to do with functionality of SPARQL is the addition of the DESCRIBE, ASK and CONSTRUCT types. All these would be rather simple to implement now that the code base is supported by external libraries. Going about implementing the additional types could be done in much the same way as the SELECT type, with the biggest challenge being how to effectively visualise them to the user. 
+
+\subsection{Visual}
+\subsubsection{New SPARQL functionality}
+With the implementation of D3.js, the question of implementing new SPARQL functionality, does not relate to how implement, but rather how the implementation would look. As an example, take the example of the union functionality. Union works by combining two variables\cite{UNIONWiki}. This could perhaps be shown visually with a new type of arrow, a circle around the two nodes, or something entirely else. With the current version of the application, neither of these solutions would be awfully hard to implement, but it must not be confusing for the user. With new functionality there is an increased risk that the visualisation would become chaotic and impossible to navigate. A visualised solution for this must therefore be found before implementing any new features.
+
+\subsubsection{Additional requirements}
+A couple of other requirements are still yet to be implemented or improved. One of these requirements is the synchronous highlighting of nodes and text view. A simple change of colour attributes on the nodes would be all that was needed for the visual implementation. Changing the colour of the nodes is something the application already works with, which can be seen when selecting a node, as it changes colour to black. A possible update to the SPARQL class could however be necessary to store the colour of the variables, so that it would be consistent across the application. Highlighting of bound and unbound variables in the textual element was something that was tried and failed, but it was deemed as highly beneficial for the project. The solution here would be to write a custom jQuery library that can handle dynamic updating of highlights throughout.\\
+A requirement that needs improvement is the downloading of the visualisation. In the current version, the visualisation is downloadable as a JSON file. While this helped with uploading the visualisation again, a JSON file is not as readable or useful for some as perhaps an image would be. For a potential third iteration, an implementation which also converts d3 to PNG or JPEG is preferred\cite{D3toImage}.\\
+Non-functional work for a third iteration could be the addition of an example query on the page, and the resizing of nodes, which do not fit for longer variable names. An example query could help new users significantly, as a direct reference or example is easy to access. A reference to the SPARQL documentation by W3 is also possible\cite{W3Documentation}.
+
+\subsection{Textual}
+\subsubsection{Automatic updating}
+Automatic updating of the textual view has been tried and failed as explained in chapter \ref{chap:second-eval}. This is still something the project would benefit from greatly and it is therefore worth trying to implement in the short term. A different approach could be to split up the error handling so highlighting only occurs when you press a button. This could be necessary as the highlighting trailing your unfinished query can get quite annoying. There was also an issue of the cursor resetting to the start of the textarea, with a jQuery library this might have an avoidable issue.
+
+\section{Long term goals}
+The long-term goals are less likely to ever be implemented and are sometimes also a bit out of the scope of the project. The goals include:
+\begin{itemize}
+    \item Hooking up to an RDF database
+    \item HTML and CSS visual updates
+    \item D3 module loading
+    \item Different parser implementation
+    \item Caching
+    \item Implementing a test framework
+    \item Autocompletion for the query
+    \item Further implementation of SPARQL functions
+\end{itemize}
+\\
+Regarding the first of these goals, the hooking up to an RDF database can certainly be seen as out of the project scope. However, as the group has experienced first-hand, when learning about SPARQL, it can be nice to be able to get a result from your SPARQL query. This helps the understanding of what is returned by a query, or what a query does in general. \\
+While the group is happy with the current D3 and parser implementation, possible upgrades can still be made. With the current version of the application, all modules from D3 are loaded. This creates unnecessary load time and can be improved by only importing the needed modules. Looking at the parser, while the action time is great, other parsers were faster as noted in the analysis of the second iteration (chapter \ref{chap:second-analysis}). The group chose PEG.js due to its appreciably easier implementation, and it is therefore a question of whether it is worth it to switch. In its current state, the group does not think it is necessary, but perhaps with an increase in rules, the difference between parsers becomes more apparent. \\
+The group also discussed adding a testing framework. A testing framework could help ensure the code is running as expected without bugs, but with the few features in its current version, it did not seem required. A framework that did look interesting to implement was the discovered Jest, which is widely popular amongst JS developers\cite{Jest}. \\
+An additional nice to have feature is a caching system. In its current form, the visualisation and written query would be nulled when reloading or experiencing crashes to the system. This would have a noticeable impact when dealing with bigger queries, and it could discourage the use of the system.
+
+\subsection{Visual}
+\subsubsection{Performance}
+At the moment of writing, it is believed that the performance of the visualisation is greatly affected by the size of the canvas. This is due to the force simulation wanting to settle, which is impossible with too many nodes in too little space. Therefore, a possible solution to this problem could be to make the canvas larger, or the nodes smaller, and then implement panning and zooming so that the user experience is not affected negatively. D3 also has modules for zooming and panning\cite{d3zoom}. How this would affect a possible image download is still unknown at this point, but the guess is that it would make it a lot harder to see what is going on with the nodes being smaller compared to the canvas.
+\subsection{Textual}
+The final long-term issue is autocompletion which can be used in two instances. One would be the autocompletion of common RDF prefixes i.e. typing “PREFIX foaf:” would yield “PREFIX foaf: http://xmlns.com/foaf/0.1/”. The second instance could be in the sense of autocompleting SPARQL query entries like most IDEs have for programming languages. An example could be typing “?na”, which would allow for the autocompletion to “?name” if that was a variable in the system. 

@@ -12,6 +12,7 @@
 \usepackage[table,xcdraw]{xcolor}
 \usepackage[normalem]{ulem}
 \usepackage{tabularx}
+\usepackage{float}
 
 \renewcommand{\ttdefault}{pcr} % nicer font for source code
 
@@ -53,26 +54,24 @@
 % Introduction chapter in 'chap-introduction.tex'
 \input{chap-introduction}
 
-% Background chapter in 'chap-background.tex'
-\input{chap-background}
+\input{chap-method-and-tools}
 
-% ...
 \input{chap-requirements}
 
-% Analysis and Design chapter in 'chap-analysis-and-design.tex'
-\input{chap-analysis-and-design}
+\input{chap-first-iteration}
 
-% Implementation chapter in 'chap-implementation.tex'
-\input{chap-implementation}
+\input{chap-second-iteration}
 
-% Conclusion chapter in 'chap-conclusion.tex'
+\input{chap-future-work}
+
 \input{chap-conclusion}
+
+\input{chap-process-evaluation}
+
+\input{chap-user-manual}
 
 \appendix
 
-test
-
-% Appendix chapter in 'chap-appendix.tex'
 \input{chap-appendix}
 
 \bibliographystyle{IEEEtran}
@@ -87,27 +86,6 @@ test
 \listoftables
 
 \newpage
-
-\begin{figure}
-    \centering
-    \includesvg[width=.9\linewidth]{UI_idea_1.svg}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includesvg[width=.9\linewidth]{UI_idea_2.svg}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includesvg[width=.9\linewidth]{UI_idea_3.svg}
-    \caption{Caption}
-    \label{fig:my_label}
-\end{figure}
 
 
 \end{document}
